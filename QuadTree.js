@@ -8,7 +8,6 @@ window.addEventListener('resize', (e) => {
     canvas.width = window.innerWidth 
     canvas.height = window.innerHeight
 })
-
 const initialWidth = window.innerWidth 
 const initialHeight = window.innerHeight
 
