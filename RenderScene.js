@@ -18,7 +18,6 @@ window.addEventListener('resize', (e) => {
     canvas.width = window.innerWidth 
     canvas.height = window.innerHeight
 })
-
 const initialWidth = window.innerWidth 
 const initialHeight = window.innerHeight
 
@@ -43,8 +42,6 @@ let SS = { // System settings
     STM: true, //SHOW THERMAL MAP
     FP: false, // fill Particles, 
     PGM: 10000,  // particle gun mass
-
-
 
     cameraSpeed: 10, //camera x and y speed
     zoomSpeed: .1,//zoom speed
@@ -71,10 +68,6 @@ SS.ASCIIWidth = canvas.width / SS.ASCIICharacterSize
 SS.ASCIIHeight = canvas.height / SS.ASCIICharacterSize
 SS.ASCIIArray = generateASCIIArray(SS.ASCIIWidth, SS.ASCIIHeight, '-')
 ctx.font = `${SS.ASCIICharacterSize}px Arial`
-
-
-
-
 function setCollisionDetectionDistance(){ 
     SS.CDD = SS.SV * 2
 }
@@ -97,11 +90,7 @@ let system = new System([],
     SS.zoom, 
     SS.PBS, 
     SS.STM)
-// camera movements 
-
-
 // html connection 
-
 let displayAllSettings = document.querySelector('.display-settings')
 let toggleDisplaySettings = document.querySelectorAll('.nav-hide')
 let navigationButtons = document.querySelectorAll('.nav-buttons')
@@ -114,46 +103,36 @@ let quadModes = document.querySelectorAll('.quad-tree-mode')
 let quad = document.querySelector('.quadtree')
 //gun settings
 let ParticleGunMass = document.querySelector('#particleGunMass')
-
-
 //optimization connection 
-
 let sideDistance = document.querySelector('#distanceSideAccuracy')
 let countPerBranch = document.querySelector("#countPerBranch")
 let CPBout = document.querySelector("#CPBoutput")
 CPBout.innerHTML = SS.CPB
 // GENERAL SETTINGS 
 // toggle collisions 
-
-
 let allowCollisions = document.getElementById('allow_collisions')
 allowCollisions.addEventListener('click', (e) => { 
     SS.RC = allowCollisions.checked
     system.RC = allowCollisions.checked
 })
 //new scene 
-
 let allowMassVarianceToggle = document.getElementById('allow_mass_variance')
 let massVarianceInput = document.getElementById('mass_variance')
 let numParticles = document.getElementById('num_particles')
 let generateScene = document.getElementById('generate_scene')
 let setSizeVariance = document.getElementById('size_variance')
-
-
 //NEW SCENE
 //set particle count of new scene
 numParticles.addEventListener('input', (e) => { 
     system.INP = e.target.value
     console.log(system.numParticles)
 })
-
 //allow mass variance toggle
 allowMassVarianceToggle.addEventListener('click', (e) => { 
     system.AMV = allowMassVarianceToggle.checked
 })
 //set mass variance 
 massVarianceInput.addEventListener('input', (e) => { 
-
     system.MV = e.target.value
     console.log(system.MV)
 })
@@ -167,7 +146,6 @@ generateScene.addEventListener('click', (e) => {
     system.CDD = system.SV * 2
     system.populate()
 })
-
 //GENERAL
 displayAllSettings.addEventListener('mouseover', (e) => { 
     console.log('user interface is currently active')
@@ -184,10 +162,8 @@ navigationButtons.forEach((button) => {
     })
 })
 content.forEach(container => { 
-
     container.addEventListener('mouseleave', () => { 
         SS.UIActive = false
-
         console.log('the current state of the UI is ' + SS.UIActive)
         container.classList.remove('active')
         toggleDisplaySettings.forEach((nav) => { 
@@ -204,7 +180,6 @@ showQuad.addEventListener('mouseover', (e) => {
         mode.classList.add('active')
     })
 })
-
 quad.addEventListener('mouseleave', (e) => { 
     SS.DQT = false
     SS.STM = false
@@ -215,7 +190,6 @@ quad.addEventListener('mouseleave', (e) => {
         mode.classList.remove('active')
     })
 })
-
 showASCII.addEventListener('mouseover', (e) => { 
     SS.ASCII = true
 })
@@ -227,7 +201,6 @@ particleGunMass.addEventListener('submit', (e) => {
     SS.PGM = e.target.value;
 })
 currentScene.innerHTML = system.system.length
-
 //OPTIMIZAION SETTINGS 
 sideDistance.addEventListener('input', (e) => { 
     SS.DSA = e.target.value/100
@@ -240,11 +213,9 @@ countPerBranch.addEventListener('input', (e) => {
 })
 //initialize system
 system.populate() 
-
 //move and zoom controls 
 // Define an object to keep track of key states
 const keysPressed = {};
-
 document.addEventListener("keydown", (e) => {
   // Store the key state as true when a key is pressed
   keysPressed[e.key] = true;
@@ -285,22 +256,16 @@ document.addEventListener("keydown", (e) => {
         break;
     }
   }
-
-  console.log(system.offsetX);
-  console.log(system.offsetY);
 });
-
 document.addEventListener("keyup", (e) => {
   keysPressed[e.key] = false;
 });
-
 //scrolling for zoom 
 function handleMouseScroll(event) {
     if (system.zoom < 0){ 
         system.zoom = 1
     }
     if (event.deltaY > 0 && system.zoom > 0) {
-
       system.zoom += SS.zoomSpeed
       console.log('sysetm zoom is ' + system.zoom)
       console.log("delta y is" + event.deltaY)
@@ -310,9 +275,7 @@ function handleMouseScroll(event) {
         system.zoom -= SS.zoomSpeed
     }
   }
-
     document.addEventListener("wheel", handleMouseScroll);
-
 //particle gun aiming
 let aimerActive = false; 
 let startCoords = {
@@ -323,7 +286,6 @@ let endCoords = {
     x: 0, 
     y: 0
 }
-
 window.addEventListener('mousedown', (e) => { 
     //this is oging to render the line that allows you to aim
     startCoords.x = e.clientX
@@ -359,7 +321,6 @@ window.addEventListener('mouseup', (e) => {
     };
     if(!SS.UIActive){ 
         let particle = new Point(
-
             particleCoords.x,  
             particleCoords.y,  
             SS.PGM, 
@@ -373,13 +334,11 @@ window.addEventListener('mouseup', (e) => {
     
         system.system.push(particle)
     }
-    
     endCoords.x = 0;
     endCoords.y = 0;
     startCoords.x = 0;
     startCoords.y = 0;
 })
-
 function aimerIsActive(){ 
     ctx.save()
 
@@ -412,15 +371,11 @@ function renderASCII(array, characterSize){
             ctx.fillText(particle, x, y)
             array[i][j] = SS.ASCIIBlankCharacter
             j++
-           
         })
-
         j = 0
         i++
     })
-    
     ctx.restore()
-    
 }
 system.generateQuadTree()
 
@@ -430,11 +385,8 @@ function animate(){
     system.generateQuadTree()
     SS.RC ? system.detectCollisions() : null
     system.renderPhysics()
-    
-    
     //rendering filter
     if(SS.ASCII){ 
-        
         let dupe = SS.ASCIIArray.slice()
         let ASCII_Frame = ASCII(
             SS.ASCIIArray, 
@@ -447,12 +399,7 @@ function animate(){
     }else{ 
         system.quadtree.show()
     }
-    
-    
-    
-    
     // system.adjustCameraMovement('follow')
-    
     aimerActive ? aimerIsActive() : null
         requestAnimationFrame(animate);
 }
