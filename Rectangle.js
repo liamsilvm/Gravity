@@ -33,7 +33,7 @@ export class Rectangle{
     draw(color, zoom){ 
         ctx.beginPath() 
         ctx.strokeStyle = color
-        this.STM ? ctx.fillStyle = `rgb(${255 * (1/((this.w + this.h)/2))}), 0, 0)` : null
+        this.STM ? ctx.fillStyle = `rgb(${255 * (20/((this.w + this.h)/2))}), 0, 0)` : null
         let renderX = this.x/this.zoom 
         let renderY = this.y/this.zoom 
         let renderWidth = this.w/this.zoom

@@ -32,10 +32,10 @@ let SS = { // System settings
     QTP: 20, // DISPLAY QUAD TREE
     SV: 10,     // SIZE VARIANCE
     AMV: true, // ALLOW MASS VARIANCE
-    MV: 2000,  // MASS VARIANCE
+    MV: 120,  // MASS VARIANCE
     GM: 200,   // GLOBAL MASS
     CDD: null,    // COLLISION DETECTION DISTANCE (SV * 4)
-    FP: true, //FILL PARTICLES
+    FP: true, //FILLs PARTICLES
     RC: true, // RENDER COLLISIONS
     zoom: 1, 
     PBS: .01, //PLAYBACK SPEED 
@@ -98,7 +98,7 @@ let content = document.querySelectorAll('.content-container')
 let currentScene = document.getElementById('scene-count')
 let mouseEffects = document.getElementById('mouse-effects')
 let showQuad = document.getElementById('show-quad-tree')
-let showASCII = document.getElementById('show-ASCII')
+let characters = document.getElementById('characters')
 let quadModes = document.querySelectorAll('.quad-tree-mode')
 let quad = document.querySelector('.quadtree')
 //gun settings
@@ -190,10 +190,10 @@ quad.addEventListener('mouseleave', (e) => {
         mode.classList.remove('active')
     })
 })
-showASCII.addEventListener('mouseover', (e) => { 
+characters.addEventListener('mouseover', (e) => { 
     SS.ASCII = true
 })
-showASCII.addEventListener('mouseleave', (e) => { 
+characters.addEventListener('mouseleave', (e) => { 
     SS.ASCII = false
 })
 //MOUSE EFFECTS / PARTICLE GUN 
@@ -267,10 +267,10 @@ function handleMouseScroll(event) {
     }
     if (event.deltaY > 0 && system.zoom > 0) {
       system.zoom += SS.zoomSpeed
-      console.log('sysetm zoom is ' + system.zoom)
+      console.log('system zoom is ' + system.zoom)
       console.log("delta y is" + event.deltaY)
     } else if (event.deltaY < 0 && system.zoom > 0) {
-        console.log('sysetm zoom is ' + system.zoom)
+        console.log('system zoom is ' + system.zoom)
         console.log("delta y is" + event.deltaY)
         system.zoom -= SS.zoomSpeed
     }
