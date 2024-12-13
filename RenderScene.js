@@ -3,6 +3,14 @@ import {Rectangle} from './Rectangle.js'
 import {QuadTree} from './QuadTree.js'
 import {System} from './System.js'
 
+/* 
+please note that at the time of making this I didn't know what ASCII was, 
+
+I was just trying to make something to remember that it was for using 
+special characters to render. 
+
+*/ 
+
 //filter 1
 import ASCII from './ASCIIfilter/ASCIIfilter.js'
 import generateASCIIArray from './ASCIIfilter/ASCIIfilterGenerator.js'
