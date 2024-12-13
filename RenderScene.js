@@ -40,7 +40,7 @@ let SS = { // System settings
     QTP: 20, // DISPLAY QUAD TREE
     SV: 10,     // SIZE VARIANCE
     AMV: true, // ALLOW MASS VARIANCE
-    MV: 120,  // MASS VARIANCE
+    MV: 200,  // MASS VARIANCE
     GM: 200,   // GLOBAL MASS
     CDD: null,    // COLLISION DETECTION DISTANCE (SV * 4)
     FP: true, //FILLs PARTICLES
