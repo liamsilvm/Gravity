@@ -49,7 +49,7 @@ let SS = { // System settings
     PBS: .01, //PLAYBACK SPEED 
     STM: true, //SHOW THERMAL MAP
     FP: false, // fill Particles, 
-    PGM: 10000,  // particle gun mass
+    PGM: 1000,  // particle gun mass
 
     cameraSpeed: 10, //camera x and y speed
     zoomSpeed: .1,//zoom speed
